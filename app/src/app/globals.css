@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --bg-base: #0b1220;
+  --bg-elevated: #111a2e;
+  --bg-card: #141f38;
+  --bg-card-hover: #182746;
+  --border-subtle: rgba(148, 163, 184, 0.12);
+  --border-strong: rgba(148, 163, 184, 0.24);
+  --foreground: #e7ecf5;
+  --muted: #93a1bd;
+  --accent-gold: #d4af6a;
+  --accent-gold-soft: rgba(212, 175, 106, 0.14);
+  --accent-emerald: #34d399;
+  --accent-blue: #5b8def;
+  --accent-red: #f0616e;
+  --shadow-elevated: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 40px -18px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-elevated-hover: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 28px 56px -18px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+@theme inline {
+  --color-background: var(--bg-base);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border-subtle);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(1100px 560px at 12% -8%, rgba(91, 141, 239, 0.16), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(212, 175, 106, 0.10), transparent 55%),
+    var(--bg-base);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(212, 175, 106, 0.35);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* ---- Shared app-shell surfaces ---- */
+
+.app-card {
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-elevated);
+}
+
+.app-panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+}
+
+.app-module-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 16px;
+  background: linear-gradient(155deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-elevated);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+.app-module-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: var(--shadow-elevated-hover);
+  border-color: var(--border-strong);
+}
+
+.app-module-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-gold-soft);
+  color: var(--accent-gold);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--muted);
+  border: 1px solid var(--border-subtle);
+}
+
+.app-scrollarea {
+  scrollbar-gutter: stable;
+}
+
+/* Tame default form controls inside the dark theme so existing pages
+   (built with plain Tailwind grays) stay legible without a full rewrite. */
+input, select, textarea {
+  background-color: var(--bg-elevated);
+  color: var(--foreground);
+  border-color: var(--border-strong) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--muted);
+}
+
+table {
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+}
